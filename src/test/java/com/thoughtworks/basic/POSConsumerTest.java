@@ -45,4 +45,14 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,10);
     }
+    @Test void should_return_consume_messages_when_consume_use_pos_18(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(18,"POS机", Boolean.FALSE);
+        StringBuilder expect = new StringBuilder();
+        ConsumePrinter consumePrinter = new ConsumePrinter();
+
+        expect.append(consumePrinter.print(recordsConsumption.getConsumeRecords()));
+    }
 }
