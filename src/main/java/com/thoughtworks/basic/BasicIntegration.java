@@ -4,7 +4,7 @@ public class BasicIntegration implements Integration {
     @Override
     public int calculateIntegration(ConsumeRecord consumeRecord) {
         int result = 0;
-        if (consumeRecord.getConsumeMode() == "POS机"){
+        if ("POS机".equals(consumeRecord.getConsumeMode()) ){
             result = (int) Math.floor(consumeRecord.getConsumeAMT() / 10);
         }
         return result;
