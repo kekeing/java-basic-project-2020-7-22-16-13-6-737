@@ -3,7 +3,9 @@ package com.thoughtworks.basic;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class POSConsumerTest {
@@ -45,14 +47,21 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,10);
     }
-    @Test void should_return_consume_messages_when_consume_use_pos_18(){
+    @Test
+    public void should_return_consume_messages_when_consume_use_pos_18(){
         List<ConsumeRecord> consumeRecords = new ArrayList<>();
         RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
         IntegrationCalculator integrationCalculate = new IntegrationCalculator();
         recordsConsumption.consume(18,"POS机", Boolean.FALSE);
         StringBuilder expect = new StringBuilder();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        expect.append("总结分： 1").append("\n").append( df.format(new Date())).append(" POS机消费 ")
+                .append("18.0元, ").append("积分 +").append(1);
         ConsumePrinter consumePrinter = new ConsumePrinter();
 
-        expect.append(consumePrinter.print(recordsConsumption.getConsumeRecords()));
+
+        String result = consumePrinter.print(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(expect.toString(),result);
     }
 }

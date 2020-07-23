@@ -15,7 +15,7 @@ public class IntegrationCalculator {
         return totalIntegration;
     }
 
-    private int calculateUnitRecordIntegration(ConsumeRecord consumeRecord) {
+    public int calculateUnitRecordIntegration(ConsumeRecord consumeRecord) {
         int result = 0;
         for (Integration integration : integrationList){
             result +=integration.calculateIntegration(consumeRecord);
