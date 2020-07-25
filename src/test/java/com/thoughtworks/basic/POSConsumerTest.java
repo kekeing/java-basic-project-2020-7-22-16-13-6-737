@@ -93,7 +93,7 @@ public class POSConsumerTest {
         Assert.assertEquals(expect.toString(),result);
     }
     @Test
-    public void should_return_1_integration_when_consume_use_kuaijie_use_2208(){
+    public void should_return_320_integration_when_consume_use_kuaijie_use_2208(){
         List<ConsumeRecord> consumeRecords = new ArrayList<>();
         RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
         IntegrationCalculator integrationCalculate = new IntegrationCalculator();
@@ -102,5 +102,16 @@ public class POSConsumerTest {
         int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
 
         Assert.assertEquals(result,320);
+    }
+    @Test
+    public void should_return_30_integration_when_consume_use_kuaijie_use_208(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(208,"快捷支付", Boolean.FALSE);
+
+        int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(result,30);
     }
 }

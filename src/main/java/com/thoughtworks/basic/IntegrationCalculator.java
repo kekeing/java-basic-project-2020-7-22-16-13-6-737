@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class IntegrationCalculator {
-    private List<Integration> integrationList = new ArrayList<>(Arrays.asList(new BasicIntegration()));
+    private List<Integration> integrationList = new ArrayList<>(Arrays.asList(new BasicIntegration(),new ExtraQuickIntegration()));
     public int calculateTotalIntegration(List<ConsumeRecord> consumeRecords) {
         int totalIntegration = 0;
         for (ConsumeRecord consumeRecord : consumeRecords){

@@ -1,10 +1,15 @@
 package com.thoughtworks.basic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class BasicIntegration implements Integration {
+    private List<String> getOnePerTen = new ArrayList<>(Arrays.asList("POS机","快捷支付"));
     @Override
     public int calculateIntegration(ConsumeRecord consumeRecord) {
         int result = 0;
-        if ("POS机".equals(consumeRecord.getConsumeMode()) ){
+        if (getOnePerTen.contains(consumeRecord.getConsumeMode()) ){
             result = (int) Math.floor(consumeRecord.getConsumeAMT() / 10);
         }
         if ("微信支付".equals(consumeRecord.getConsumeMode())){
