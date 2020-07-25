@@ -9,8 +9,8 @@ public class BasicIntegration implements Integration {
     @Override
     public int calculateIntegration(ConsumeRecord consumeRecord) {
         int result = 0;
-        double actualIntegrationPerTen = consumeRecord.getConsumeAMT() / 10;
-        double actualIntegrationPerTwenty = consumeRecord.getConsumeAMT() / 20;
+        double actualIntegrationPerTen = Math.floor(consumeRecord.getConsumeAMT() / 10);
+        double actualIntegrationPerTwenty = Math.floor(consumeRecord.getConsumeAMT() / 20);
         actualIntegrationPerTen = consumeRecord.getGoldCard() ? (actualIntegrationPerTen * 1.5) : actualIntegrationPerTen;
         actualIntegrationPerTwenty = consumeRecord.getGoldCard() ? (actualIntegrationPerTwenty * 1.5) : actualIntegrationPerTwenty;
 

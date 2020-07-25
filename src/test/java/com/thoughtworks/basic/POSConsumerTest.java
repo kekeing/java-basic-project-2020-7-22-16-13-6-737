@@ -165,5 +165,15 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,1060);
     }
+    @Test
+    public void should_return_430_integration_when_consume_with_golden_card_use_kuaijie_use_2208(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(2208,"快捷支付", Boolean.TRUE);
 
+        int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(result,430);
+    }
 }
