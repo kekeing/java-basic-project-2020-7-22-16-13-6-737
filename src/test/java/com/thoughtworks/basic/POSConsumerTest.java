@@ -75,4 +75,21 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,1);
     }
+    @Test
+    public void should_return_consume_messages_when_consume_use_weixin_23(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(23,"微信支付", Boolean.FALSE);
+        StringBuilder expect = new StringBuilder();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        expect.append("总结分： 1").append("\n").append( df.format(new Date())).append(" 微信支付消费 ")
+                .append("23.0元, ").append("积分 +").append(1);
+        ConsumePrinter consumePrinter = new ConsumePrinter();
+
+
+        String result = consumePrinter.print(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(expect.toString(),result);
+    }
 }
