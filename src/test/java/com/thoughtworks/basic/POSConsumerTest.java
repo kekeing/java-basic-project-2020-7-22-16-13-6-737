@@ -148,7 +148,7 @@ public class POSConsumerTest {
         List<ConsumeRecord> consumeRecords = new ArrayList<>();
         RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
         IntegrationCalculator integrationCalculate = new IntegrationCalculator();
-        recordsConsumption.consume(18,"POS机", Boolean.TRUE);
+        recordsConsumption.consume(21,"POS机", Boolean.TRUE);
 
         int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
 
