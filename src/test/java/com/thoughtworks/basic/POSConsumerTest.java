@@ -64,4 +64,15 @@ public class POSConsumerTest {
 
         Assert.assertEquals(expect.toString(),result);
     }
+    @Test
+    public void should_return_1_integration_when_consume_use_weixin_use_23(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(23,"微信支付", Boolean.FALSE);
+
+        int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(result,1);
+    }
 }
