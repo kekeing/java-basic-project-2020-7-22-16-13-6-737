@@ -9,7 +9,7 @@ public class ConsumePrinter {
         IntegrationCalculator integrationCalculator = new IntegrationCalculator();
         StringBuilder result = new StringBuilder();
         int totalIntegration = integrationCalculator.calculateTotalIntegration(consumeRecords);
-        result.append("总结分： ").append(totalIntegration);
+        result.append("总机分： ").append(totalIntegration);
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         for (ConsumeRecord consumeRecord: consumeRecords){
             result.append("\n").append(df.format(new Date())).append(" ").append(consumeRecord.getConsumeMode())
