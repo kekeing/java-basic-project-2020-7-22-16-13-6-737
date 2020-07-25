@@ -114,4 +114,33 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,30);
     }
+
+    @Test
+    public void should_return_consume_messages_when_consume_use_kuaijie_208(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(208,"快捷支付", Boolean.FALSE);
+        StringBuilder expect = new StringBuilder();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        expect.append("总结分： 30").append("\n").append( df.format(new Date())).append(" 快捷支付消费 ")
+                .append("208.0元, ").append("积分 +").append(30);
+        ConsumePrinter consumePrinter = new ConsumePrinter();
+
+
+        String result = consumePrinter.print(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(expect.toString(),result);
+    }
+    @Test
+    public void should_return_740_integration_when_consume_use_xinyongkafenqi_use_6400(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(6400,"信用卡分期购物", Boolean.FALSE);
+
+        int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(result,740);
+    }
 }
