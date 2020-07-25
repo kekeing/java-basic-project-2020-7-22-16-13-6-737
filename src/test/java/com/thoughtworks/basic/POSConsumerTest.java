@@ -143,4 +143,15 @@ public class POSConsumerTest {
 
         Assert.assertEquals(result,740);
     }
+    @Test
+    public void should_return_1_integration_when_consume_with_golden_card_use_pos_use_21(){
+        List<ConsumeRecord> consumeRecords = new ArrayList<>();
+        RecordsConsumption recordsConsumption = new RecordsConsumption(consumeRecords);
+        IntegrationCalculator integrationCalculate = new IntegrationCalculator();
+        recordsConsumption.consume(18,"POS机", Boolean.TRUE);
+
+        int result = integrationCalculate.calculateTotalIntegration(recordsConsumption.getConsumeRecords());
+
+        Assert.assertEquals(result,3);
+    }
 }
